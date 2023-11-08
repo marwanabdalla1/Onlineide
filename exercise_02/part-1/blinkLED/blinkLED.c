@@ -11,6 +11,13 @@
 
 */
 
+// delay function
+void delay(int count) {
+    while (count--) {
+        // Simple delay loop (not precise, just for example)
+        for (volatile int i = 0; i < 50000; i++);
+    }
+}
 
 int main(void) __attribute__((naked));
 int main(void)
@@ -24,5 +31,23 @@ int main(void)
     //     // TODO: code for blinking LED
 
     // }
+
+    // Initialize GPIO pin for output
+    GPIO_DIR |= LED_BIT;
+
+    // Main loop
+    while (1) {
+        // Set the GPIO pin to high to turn on the LED
+        GPIO_SET = LED_BIT;
+
+        // Delay
+        delay(1);
+
+        // Set the GPIO pin to low to turn off the LED
+        GPIO_CLR = LED_BIT;
+
+        // Delay
+        delay(1);
+    }
     
 }
