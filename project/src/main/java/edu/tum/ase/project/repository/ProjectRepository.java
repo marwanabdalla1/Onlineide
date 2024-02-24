@@ -2,19 +2,23 @@ package edu.tum.ase.project.repository;
 import edu.tum.ase.project.model.Project;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
-import org.springframework.data.jpa.repository.JpaRepository; import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 
-/**
- * Note that Spring provides a variety of Repository abstractions, JpaRepository is
-     technology-specific
- * see https://docs.spring.io/spring-data/jdbc/docs/current/reference/html/#repositories
- */
+
 
 @Repository
 public interface ProjectRepository extends JpaRepository<Project, String> {
-  Project findByName(String name);
+  Optional<Project> findById(String projectId);
   ArrayList<Project> findAll();
+
+  Project findByName(String name);
+
+  @Override
+  void deleteById(String s);
+
 }
 

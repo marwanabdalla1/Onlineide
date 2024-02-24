@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url:  ${databaseurl:jdbc:postgresql://localhost:5432/my_db}
+    username: admin
+    password: test
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        hbm2ddl:
+          auto: update
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
+
